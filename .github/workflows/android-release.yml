@@ -38,7 +38,7 @@ jobs:
 
       - name: Assemble Release (unsigned)
         shell: bash
-        working-directory: buildsrc/GyroRush
+        working-directory: buildsrc
         run: gradle assembleRelease
 
       - name: Restore keystore from secrets
@@ -53,7 +53,7 @@ jobs:
         id: findapk
         shell: bash
         run: |
-          APK=$(ls buildsrc/GyroRush/app/build/outputs/apk/release/*-unsigned.apk | head -n 1)
+          APK=$(ls buildsrc/app/build/outputs/apk/release/*-unsigned.apk | head -n 1)
           if [ -z "$APK" ]; then
             echo "No unsigned APK found"; exit 1
           fi
